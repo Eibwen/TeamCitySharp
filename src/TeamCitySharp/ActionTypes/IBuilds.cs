@@ -23,6 +23,7 @@ namespace TeamCitySharp.ActionTypes
         List<BuildSummary> NonSuccessfulBuildsForUser(string userName);
         List<BuildSummary> ByBranch(string branchName);
         BuildSummary LastBuildByAgent(string agentName);
+        Build FillInBuildData(BuildSummary build);
         void Add2QueueBuildByBuildConfigId(string buildConfigId);
     }
 }

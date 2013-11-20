@@ -239,6 +239,7 @@ namespace TeamCitySharp.Connection
         {
             var protocol = _configuration.UseSSL ? "https://" : "http://";
             var authType = _configuration.ActAsGuest ? "/guestAuth" : "/httpAuth";
+            if (urlPart.StartsWith(authType)) authType = "";
 
             return string.Format("{0}{1}{2}{3}", protocol, _configuration.HostName, authType, urlPart);
         }
