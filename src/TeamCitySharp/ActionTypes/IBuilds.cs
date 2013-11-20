@@ -7,22 +7,22 @@ namespace TeamCitySharp.ActionTypes
 {
     public interface IBuilds
     {
-        List<Build> SuccessfulBuildsByBuildConfigId(string buildConfigId);
-        Build LastSuccessfulBuildByBuildConfigId(string buildConfigId);
-        List<Build> FailedBuildsByBuildConfigId(string buildConfigId);
-        Build LastFailedBuildByBuildConfigId(string buildConfigId);
-        Build LastBuildByBuildConfigId(string buildConfigId);
-        List<Build> ErrorBuildsByBuildConfigId(string buildConfigId);
-        Build LastErrorBuildByBuildConfigId(string buildConfigId);
-        List<Build> ByBuildConfigId(string buildConfigId);
-        List<Build> ByConfigIdAndTag(string buildConfigId, string tag);
-        List<Build> ByUserName(string userName);
-        List<Build> ByBuildLocator(BuildLocator locator);
-        List<Build> AllSinceDate(DateTime date);
-        List<Build> AllBuildsOfStatusSinceDate(DateTime date, BuildStatus buildStatus);
-        List<Build> NonSuccessfulBuildsForUser(string userName);
-        List<Build> ByBranch(string branchName);
-        Build LastBuildByAgent(string agentName);
+        List<BuildSummary> SuccessfulBuildsByBuildConfigId(string buildConfigId);
+        BuildSummary LastSuccessfulBuildByBuildConfigId(string buildConfigId);
+        List<BuildSummary> FailedBuildsByBuildConfigId(string buildConfigId);
+        BuildSummary LastFailedBuildByBuildConfigId(string buildConfigId);
+        BuildSummary LastBuildByBuildConfigId(string buildConfigId);
+        List<BuildSummary> ErrorBuildsByBuildConfigId(string buildConfigId);
+        BuildSummary LastErrorBuildByBuildConfigId(string buildConfigId);
+        List<BuildSummary> ByBuildConfigId(string buildConfigId);
+        List<BuildSummary> ByConfigIdAndTag(string buildConfigId, string tag);
+        List<BuildSummary> ByUserName(string userName);
+        List<BuildSummary> ByBuildLocator(BuildLocator locator);
+        List<BuildSummary> AllSinceDate(DateTime date);
+        List<BuildSummary> AllBuildsOfStatusSinceDate(DateTime date, BuildStatus buildStatus);
+        List<BuildSummary> NonSuccessfulBuildsForUser(string userName);
+        List<BuildSummary> ByBranch(string branchName);
+        BuildSummary LastBuildByAgent(string agentName);
         void Add2QueueBuildByBuildConfigId(string buildConfigId);
     }
 }

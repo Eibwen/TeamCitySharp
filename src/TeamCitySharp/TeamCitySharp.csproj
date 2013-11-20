@@ -94,7 +94,7 @@
     <Compile Include="Connection\TeamcityJsonEncoderDecoderConfiguration.cs" />
     <Compile Include="DomainEntities\Agent.cs" />
     <Compile Include="DomainEntities\AgentWrapper.cs" />
-    <Compile Include="DomainEntities\Build.cs" />
+    <Compile Include="DomainEntities\BuildSummary.cs" />
     <Compile Include="DomainEntities\BuildConfig.cs" />
     <Compile Include="DomainEntities\BuildTypeWrapper.cs" />
     <Compile Include="DomainEntities\BuildWrapper.cs" />

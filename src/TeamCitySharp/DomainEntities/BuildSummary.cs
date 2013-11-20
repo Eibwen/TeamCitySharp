@@ -2,7 +2,7 @@
 
 namespace TeamCitySharp.DomainEntities
 {
-    public class Build
+    public class BuildSummary
     {
         public string Id { get; set; }
         public string Number { get; set; }

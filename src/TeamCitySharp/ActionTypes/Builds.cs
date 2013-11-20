@@ -16,17 +16,17 @@ namespace TeamCitySharp.ActionTypes
             _caller = caller;
         }
 
-        public List<Build> ByBuildLocator(BuildLocator locator)
+        public List<BuildSummary> ByBuildLocator(BuildLocator locator)
         {
             var buildWrapper = _caller.GetFormat<BuildWrapper>("/app/rest/builds?locator={0}", locator);
             if (int.Parse(buildWrapper.Count) > 0)
             {
                 return buildWrapper.Build;
             }
-            return new List<Build>();
+            return new List<BuildSummary>();
         }
 
-        public Build LastBuildByAgent(string agentName)
+        public BuildSummary LastBuildByAgent(string agentName)
         {
             return ByBuildLocator(BuildLocator.WithDimensions(
                 agentName: agentName,
@@ -39,103 +39,103 @@ namespace TeamCitySharp.ActionTypes
             _caller.GetFormat("/action.html?add2Queue={0}", buildConfigId);
         }
 
-        public List<Build> SuccessfulBuildsByBuildConfigId(string buildConfigId)
+        public List<BuildSummary> SuccessfulBuildsByBuildConfigId(string buildConfigId)
         {
             return ByBuildLocator(BuildLocator.WithDimensions(BuildTypeLocator.WithId(buildConfigId),
                                                                     status: BuildStatus.SUCCESS
                                             ));
         }
 
-        public Build LastSuccessfulBuildByBuildConfigId(string buildConfigId)
+        public BuildSummary LastSuccessfulBuildByBuildConfigId(string buildConfigId)
         {
             var builds = ByBuildLocator(BuildLocator.WithDimensions(BuildTypeLocator.WithId(buildConfigId),
                                                                           status: BuildStatus.SUCCESS,
                                                                           maxResults: 1
                                                   ));
-            return builds != null ? builds.FirstOrDefault() : new Build();
+            return builds != null ? builds.FirstOrDefault() : new BuildSummary();
         }
 
-        public List<Build> FailedBuildsByBuildConfigId(string buildConfigId)
+        public List<BuildSummary> FailedBuildsByBuildConfigId(string buildConfigId)
         {
             return ByBuildLocator(BuildLocator.WithDimensions(BuildTypeLocator.WithId(buildConfigId),
                                                                     status: BuildStatus.FAILURE
                                             ));
         }
 
-        public Build LastFailedBuildByBuildConfigId(string buildConfigId)
+        public BuildSummary LastFailedBuildByBuildConfigId(string buildConfigId)
         {
             var builds = ByBuildLocator(BuildLocator.WithDimensions(BuildTypeLocator.WithId(buildConfigId),
                                                                           status: BuildStatus.FAILURE,
                                                                           maxResults: 1
                                                   ));
-            return builds != null ? builds.FirstOrDefault() : new Build();
+            return builds != null ? builds.FirstOrDefault() : new BuildSummary();
         }
 
-        public Build LastBuildByBuildConfigId(string buildConfigId)
+        public BuildSummary LastBuildByBuildConfigId(string buildConfigId)
         {
             var builds = ByBuildLocator(BuildLocator.WithDimensions(BuildTypeLocator.WithId(buildConfigId),
                                                                           maxResults: 1
                                                   ));
-            return builds != null ? builds.FirstOrDefault() : new Build();
+            return builds != null ? builds.FirstOrDefault() : new BuildSummary();
         }
 
-        public List<Build> ErrorBuildsByBuildConfigId(string buildConfigId)
+        public List<BuildSummary> ErrorBuildsByBuildConfigId(string buildConfigId)
         {
             return ByBuildLocator(BuildLocator.WithDimensions(BuildTypeLocator.WithId(buildConfigId),
                                                                     status: BuildStatus.ERROR
                                             ));
         }
 
-        public Build LastErrorBuildByBuildConfigId(string buildConfigId)
+        public BuildSummary LastErrorBuildByBuildConfigId(string buildConfigId)
         {
             var builds = ByBuildLocator(BuildLocator.WithDimensions(BuildTypeLocator.WithId(buildConfigId),
                                                                           status: BuildStatus.ERROR,
                                                                           maxResults: 1
                                                   ));
-            return builds != null ? builds.FirstOrDefault() : new Build();
+            return builds != null ? builds.FirstOrDefault() : new BuildSummary();
         }
 
-        public List<Build> ByBuildConfigId(string buildConfigId)
+        public List<BuildSummary> ByBuildConfigId(string buildConfigId)
         {
             return ByBuildLocator(BuildLocator.WithDimensions(BuildTypeLocator.WithId(buildConfigId)
                                             ));
         }
 
-        public List<Build> ByConfigIdAndTag(string buildConfigId, string tag)
+        public List<BuildSummary> ByConfigIdAndTag(string buildConfigId, string tag)
         {
             return ByConfigIdAndTag(buildConfigId, new[] { tag });
         }
 
-        public List<Build> ByConfigIdAndTag(string buildConfigId, string[] tags)
+        public List<BuildSummary> ByConfigIdAndTag(string buildConfigId, string[] tags)
         {
             return ByBuildLocator(BuildLocator.WithDimensions(BuildTypeLocator.WithId(buildConfigId),
                                                                     tags: tags
                                             ));
         }
 
-        public List<Build> ByUserName(string userName)
+        public List<BuildSummary> ByUserName(string userName)
         {
             return ByBuildLocator(BuildLocator.WithDimensions(
                 user: UserLocator.WithUserName(userName)
                                             ));
         }
 
-        public List<Build> AllSinceDate(DateTime date)
+        public List<BuildSummary> AllSinceDate(DateTime date)
         {
             return ByBuildLocator(BuildLocator.WithDimensions(sinceDate: date));
         }
 
-        public List<Build> ByBranch(string branchName)
+        public List<BuildSummary> ByBranch(string branchName)
         {
             return ByBuildLocator(BuildLocator.WithDimensions(branch: branchName));
         } 
 
-        public List<Build> AllBuildsOfStatusSinceDate(DateTime date, BuildStatus buildStatus)
+        public List<BuildSummary> AllBuildsOfStatusSinceDate(DateTime date, BuildStatus buildStatus)
         {
             return ByBuildLocator(BuildLocator.WithDimensions(sinceDate: date, status: buildStatus));
         }
 
-        public List<Build> NonSuccessfulBuildsForUser(string userName)
+        public List<BuildSummary> NonSuccessfulBuildsForUser(string userName)
         {
             var builds = ByUserName(userName);
             if (builds == null)
