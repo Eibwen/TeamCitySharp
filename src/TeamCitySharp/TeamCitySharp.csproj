@@ -104,7 +104,7 @@
     <Compile Include="DomainEntities\Change.cs" />
     <Compile Include="DomainEntities\ChangeWrapper.cs" />
     <Compile Include="DomainEntities\Credentials.cs" />
-    <Compile Include="DomainEntities\File.cs" />
+    <Compile Include="DomainEntities\FileData.cs" />
     <Compile Include="DomainEntities\FileWrapper.cs" />
     <Compile Include="DomainEntities\Group.cs" />
     <Compile Include="DomainEntities\IBaseEntity.cs" />

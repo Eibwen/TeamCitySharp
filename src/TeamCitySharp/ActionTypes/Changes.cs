@@ -40,6 +40,15 @@ namespace TeamCitySharp.ActionTypes
             return changeWrapper.Change;
         }
 
+        public List<ChangeSummary> GetChanges(Build build)
+        {
+            if (build.Changes.Count == 0) return new List<ChangeSummary>();
+
+            var changeWrapper = _caller.GetFormat<ChangeWrapper>(build.Changes.Href);
+
+            return changeWrapper.Change;
+        }
+
         public ChangeSummary LastChangeDetailByBuildConfigId(string buildConfigId)
         {
             var changes = ByBuildConfigId(buildConfigId);
