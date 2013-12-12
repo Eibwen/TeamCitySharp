@@ -4,6 +4,6 @@ namespace TeamCitySharp.DomainEntities
 {
     public class ChangeWrapper
     {
-        public List<Change> Change { get; set; }
+        public List<ChangeSummary> Change { get; set; }
     }
 }

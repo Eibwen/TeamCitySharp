@@ -68,6 +68,7 @@
     <Compile Include="ActionTypes\ServerInformation.cs" />
     <Compile Include="Connection\ITeamCityCaller.cs" />
     <Compile Include="DomainEntities\Build.cs" />
+    <Compile Include="DomainEntities\ChangeSummary.cs" />
     <Compile Include="DomainEntities\RunningInfo.cs" />
     <Compile Include="TeamCityClient.cs" />
     <Compile Include="ActionTypes\Users.cs" />

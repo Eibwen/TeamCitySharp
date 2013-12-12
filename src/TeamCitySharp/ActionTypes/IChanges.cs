@@ -5,9 +5,9 @@ namespace TeamCitySharp.ActionTypes
 {
     public interface IChanges
     {
-        List<Change> All();
+        List<ChangeSummary> All();
         Change ByChangeId(string id);
-        Change LastChangeDetailByBuildConfigId(string buildConfigId);
-        List<Change> ByBuildConfigId(string buildConfigId);
+        ChangeSummary LastChangeDetailByBuildConfigId(string buildConfigId);
+        List<ChangeSummary> ByBuildConfigId(string buildConfigId);
     }
 }

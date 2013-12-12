@@ -14,11 +14,16 @@ namespace TeamCitySharp.ActionTypes
             _caller = caller;
         }
 
-        public List<Change> All()
+        public List<ChangeSummary> All()
         {
             var changeWrapper = _caller.Get<ChangeWrapper>("/app/rest/changes");
 
             return changeWrapper.Change;
+        }
+
+        public Change FillInChangeData(ChangeSummary build)
+        {
+            return _caller.Get<Change>(build.Href);
         }
 
         public Change ByChangeId(string id)
@@ -28,14 +33,14 @@ namespace TeamCitySharp.ActionTypes
             return change;
         }
 
-        public List<Change> ByBuildConfigId(string buildConfigId)
+        public List<ChangeSummary> ByBuildConfigId(string buildConfigId)
         {
             var changeWrapper = _caller.GetFormat<ChangeWrapper>("/app/rest/changes?buildType={0}", buildConfigId);
 
             return changeWrapper.Change;
         }
 
-        public Change LastChangeDetailByBuildConfigId(string buildConfigId)
+        public ChangeSummary LastChangeDetailByBuildConfigId(string buildConfigId)
         {
             var changes = ByBuildConfigId(buildConfigId);
 
