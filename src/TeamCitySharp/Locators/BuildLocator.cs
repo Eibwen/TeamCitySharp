@@ -10,6 +10,13 @@ namespace TeamCitySharp.Locators
         ERROR
     }
 
+    public enum Trinary
+    {
+        @true,
+        @false,
+        any
+    }
+
     public class BuildLocator
     {
         public static BuildLocator WithId(long id)
@@ -22,10 +29,16 @@ namespace TeamCitySharp.Locators
             return new BuildLocator {Number = number};
         }
 
-        public static BuildLocator RunningBuilds()
+        public static BuildLocator OnlyRunningBuilds()
         {
-            return new BuildLocator {Running = true};
+            return new BuildLocator { Running = Trinary.@true };
         }
+
+        public static BuildLocator IncludeRunningBuilds()
+        {
+            return new BuildLocator {Running = Trinary.any};
+        }
+
 
         public static BuildLocator WithDimensions(BuildTypeLocator buildType = null,
                                                   UserLocator user = null,
@@ -33,7 +46,7 @@ namespace TeamCitySharp.Locators
                                                   BuildStatus? status = null,
                                                   bool? personal = null,
                                                   bool? canceled = null,
-                                                  bool? running = null,
+                                                  Trinary? running = null,
                                                   bool? pinned = null,
                                                   int? maxResults = null,
                                                   int? startIndex = null,
@@ -72,7 +85,7 @@ namespace TeamCitySharp.Locators
         public BuildLocator SinceBuild { get; private set; }
         public bool? Personal { get; private set; }
         public bool? Canceled { get; private set; }
-        public bool? Running { get; private set; }
+        public Trinary? Running { get; private set; }
         public bool? Pinned { get; private set; }
         public int? MaxResults { get; private set; }
         public int? StartIndex { get; private set; }

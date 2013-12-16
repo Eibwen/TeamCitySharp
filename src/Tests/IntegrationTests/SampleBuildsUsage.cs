@@ -164,7 +164,7 @@ namespace TeamCitySharp.IntegrationTests
         [Test]
         public void it_returns_all_running_builds()
         {
-            var builds = _client.Builds.ByBuildLocator(BuildLocator.RunningBuilds());
+            var builds = _client.Builds.ByBuildLocator(BuildLocator.OnlyRunningBuilds());
 
             Assert.IsNotNull(builds, "There are currently no running builds");
         }
