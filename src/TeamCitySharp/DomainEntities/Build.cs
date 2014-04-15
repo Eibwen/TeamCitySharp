@@ -17,6 +17,7 @@ namespace TeamCitySharp.DomainEntities
         public string StatusText { get; set; }
         public BuildConfig BuildType { get; set; }
         public DateTime StartDate { get; set; }
+        public DateTime? FinishDate { get; set; }
         public Agent Agent { get; set; }
         public object Tags { get; set; }
         public Properties Properties { get; set; }
